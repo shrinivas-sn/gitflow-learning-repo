@@ -106,6 +106,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initial count update
     updateTaskCount();
+
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', function () {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            darkModeToggle.textContent = '☀️ Light Mode';
+        } else {
+            darkModeToggle.textContent = '🌙 Dark Mode';
+        }
+    });
 });
 
 // Add fadeOut animation

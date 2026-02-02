@@ -309,3 +309,56 @@ footer p {
 .hidden {
     display: none;
 }
+
+/* Dark Mode Styles */
+.dark-mode-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.dark-mode-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+body.dark-mode .container {
+    background: #0f3460;
+    color: #e0e0e0;
+}
+
+body.dark-mode main {
+    background: #0f3460;
+}
+
+body.dark-mode .task-item {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode .task-text {
+    color: #e0e0e0;
+}
+
+body.dark-mode #taskInput {
+    background: #16213e;
+    color: #e0e0e0;
+    border-color: #667eea;
+}
+
+body.dark-mode .task-list h2 {
+    color: #e0e0e0;
+}
