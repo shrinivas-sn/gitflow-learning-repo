@@ -29,6 +29,11 @@
         <main>
             <div class="add-task-section">
                 <input type="text" id="taskInput" placeholder="What needs to be done?" />
+                <select id="prioritySelect" class="priority-select">
+                    <option value="low">🟢 Low</option>
+                    <option value="medium" selected>🟡 Medium</option>
+                    <option value="high">🔴 High</option>
+                </select>
                 <button id="addTaskBtn" class="btn btn-primary">
                     <span>➕</span> Add Task
                 </button>

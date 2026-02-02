@@ -362,3 +362,44 @@ body.dark-mode #taskInput {
 body.dark-mode .task-list h2 {
     color: #e0e0e0;
 }
+
+/* Priority Styles */
+.priority-select {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.priority-select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.priority-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.priority-high {
+    background: #fee;
+    color: #c0392b;
+    border-left-color: #c0392b !important;
+}
+
+.priority-medium {
+    background: #ffeaa7;
+    color: #d68910;
+    border-left-color: #d68910 !important;
+}
+
+.priority-low {
+    background: #d5f4e6;
+    color: #27ae60;
+    border-left-color: #27ae60 !important;
+}

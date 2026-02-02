@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const emptyState = document.getElementById('emptyState');
     const totalTasksEl = document.getElementById('totalTasks');
     const todayTasksEl = document.getElementById('todayTasks');
+    const prioritySelect = document.getElementById('prioritySelect');
 
     // Update task counter
     function updateTaskCount() {
@@ -35,7 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Create new task item
         const li = document.createElement('li');
-        li.className = 'task-item';
+        const priority = prioritySelect.value;
+        li.className = `task-item priority-${priority}`;
 
         const taskContent = document.createElement('div');
         taskContent.className = 'task-content';
@@ -43,6 +45,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const taskIcon = document.createElement('span');
         taskIcon.className = 'task-icon';
         taskIcon.textContent = '📌';
+
+        const priorityBadge = document.createElement('span');
+        priorityBadge.className = 'priority-badge';
+        priorityBadge.textContent = priority.toUpperCase();
 
         const taskTextSpan = document.createElement('span');
         taskTextSpan.className = 'task-text';
@@ -60,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         taskContent.appendChild(taskIcon);
+        taskContent.appendChild(priorityBadge);
         taskContent.appendChild(taskTextSpan);
         li.appendChild(taskContent);
         li.appendChild(deleteBtn);
