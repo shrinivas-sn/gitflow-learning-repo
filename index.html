@@ -1,24 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUPER Task Manager Pro</title>
-    <style>
-        body { font-family: sans-serif; padding: 20px; background-color: #f0f0f0; }
-        .btn { padding: 10px 20px; background-color: #333; color: white; border: none; cursor: pointer; }
-    </style>
+    <title>Task Manager v1.0</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <h1>SUPER Task Manager Pro</h1>
-    <p>Manage your tasks efficiently.</p>
-    
-    <button class="btn">Toggle Dark Mode (New in v2.0)</button>
+    <div class="container">
+        <header>
+            <h1>📋 Task Manager</h1>
+            <p class="version">Version 1.0.0</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalTasks">2</span>
+                    <span class="stat-label">Total Tasks</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="todayTasks">2</span>
+                    <span class="stat-label">Today</span>
+                </div>
+            </div>
+        </header>
 
-    <ul>
-        <li>Learn Gitflow</li>
-        <li>Practice Release Branching</li>
-    </ul>
+        <main>
+            <div class="add-task-section">
+                <input type="text" id="taskInput" placeholder="What needs to be done?" />
+                <button id="addTaskBtn" class="btn btn-primary">
+                    <span>➕</span> Add Task
+                </button>
+            </div>
 
-    </body>
+            <div class="task-list">
+                <div class="task-header">
+                    <h2>Your Tasks</h2>
+                    <button id="clearAllBtn" class="btn-clear">Clear All</button>
+                </div>
+
+                <ul id="taskList">
+                    <li class="task-item">
+                        <div class="task-content">
+                            <span class="task-icon">📌</span>
+                            <span class="task-text">Learn GitFlow basics</span>
+                        </div>
+                        <button class="btn-delete">🗑️</button>
+                    </li>
+                    <li class="task-item">
+                        <div class="task-content">
+                            <span class="task-icon">📌</span>
+                            <span class="task-text">Practice branching strategies</span>
+                        </div>
+                        <button class="btn-delete">🗑️</button>
+                    </li>
+                </ul>
+
+                <div id="emptyState" class="empty-state hidden">
+                    <div class="empty-icon">✨</div>
+                    <p>No tasks yet!</p>
+                    <p class="empty-subtitle">Add your first task to get started</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built with ❤️ for learning Git & GitFlow</p>
+            <p class="footer-tip">💡 Tip: Press Enter to quickly add tasks</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
 </html>
