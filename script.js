@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const emptyState = document.getElementById('emptyState');
     const totalTasksEl = document.getElementById('totalTasks');
     const todayTasksEl = document.getElementById('todayTasks');
+    const prioritySelect = document.getElementById('prioritySelect');
 
     // LocalStorage functions
     function saveTasks() {
@@ -43,7 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Create task element (reusable)
     function createTaskElement(taskText) {
         const li = document.createElement('li');
-        li.className = 'task-item';
+        const priority = prioritySelect.value;
+        li.className = `task-item priority-${priority}`;
 
         const taskContent = document.createElement('div');
         taskContent.className = 'task-content';
@@ -51,6 +53,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const taskIcon = document.createElement('span');
         taskIcon.className = 'task-icon';
         taskIcon.textContent = '📌';
+
+        const priorityBadge = document.createElement('span');
+        priorityBadge.className = 'priority-badge';
+        priorityBadge.textContent = priority.toUpperCase();
 
         const taskTextSpan = document.createElement('span');
         taskTextSpan.className = 'task-text';
@@ -69,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         taskContent.appendChild(taskIcon);
+        taskContent.appendChild(priorityBadge);
         taskContent.appendChild(taskTextSpan);
         li.appendChild(taskContent);
         li.appendChild(deleteBtn);
@@ -131,6 +138,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load saved tasks and update count
     loadTasks();
     updateTaskCount();
+
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', function () {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            darkModeToggle.textContent = '☀️ Light Mode';
+        } else {
+            darkModeToggle.textContent = '🌙 Dark Mode';
+        }
+    });
 });
 
 // Add fadeOut animation
