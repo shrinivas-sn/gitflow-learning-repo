@@ -8,6 +8,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const totalTasksEl = document.getElementById('totalTasks');
     const todayTasksEl = document.getElementById('todayTasks');
 
+    // LocalStorage functions
+    function saveTasks() {
+        const tasks = [];
+        document.querySelectorAll('.task-item .task-text').forEach(taskEl => {
+            tasks.push(taskEl.textContent);
+        });
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    function loadTasks() {
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        tasks.forEach(taskText => {
+            createTaskElement(taskText);
+        });
+    }
+
     // Update task counter
     function updateTaskCount() {
         const taskCount = taskList.children.length;
@@ -24,16 +40,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Add task function
-    function addTask() {
-        const taskText = taskInput.value.trim();
-
-        if (taskText === '') {
-            alert('Please enter a task!');
-            return;
-        }
-
-        // Create new task item
+    // Create task element (reusable)
+    function createTaskElement(taskText) {
         const li = document.createElement('li');
         li.className = 'task-item';
 
@@ -56,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 li.remove();
                 updateTaskCount();
+                saveTasks();
             }, 300);
         };
 
@@ -64,13 +73,26 @@ document.addEventListener('DOMContentLoaded', function () {
         li.appendChild(taskContent);
         li.appendChild(deleteBtn);
         taskList.appendChild(li);
+    }
+
+    // Add task function
+    function addTask() {
+        const taskText = taskInput.value.trim();
+
+        if (taskText === '') {
+            alert('Please enter a task!');
+            return;
+        }
+
+        createTaskElement(taskText);
 
         // Clear input
         taskInput.value = '';
         taskInput.focus();
 
-        // Update counter
+        // Update counter and save
         updateTaskCount();
+        saveTasks();
     }
 
     // Clear all tasks
@@ -80,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (confirm('Are you sure you want to clear all tasks?')) {
             taskList.innerHTML = '';
             updateTaskCount();
+            saveTasks();
         }
     });
 
@@ -100,11 +123,13 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 li.remove();
                 updateTaskCount();
+                saveTasks();
             }, 300);
         };
     });
 
-    // Initial count update
+    // Load saved tasks and update count
+    loadTasks();
     updateTaskCount();
 });
 
